@@ -124,6 +124,13 @@ form input[type=text] {
     padding: 10px;
     border-bottom: 1px solid rgba(255,255,255,.1);
     font-weight: 400;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all .3s;
+}
+
+.username:hover {
+    background: rgba(0,0,0,.2);
 }
 
 .message {
@@ -245,6 +252,10 @@ input:hover {
 
 .befriended > .username {
     border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+.befriended > .username:hover {
+    background: rgba(255,255,255, .2);
 }
 
 .befriended > .message {
