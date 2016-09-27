@@ -41,7 +41,7 @@ $(document).ready(function () {
         type: 'GET',
         data: {
           limit: 100,
-          order: "-createdAt"
+          order: '-createdAt'
         },
         contentType: 'application/json',
         success: function (data) {
@@ -67,7 +67,7 @@ $(document).ready(function () {
     },
 
     clearMessages: function () {
-      $("#chats").empty();
+      $('#chats').empty();
     },
 
     renderMessage: function (message) {
@@ -109,7 +109,7 @@ $(document).ready(function () {
 
       // checks if user is a friend; if so, bold their messages (!!!! currently just name is bolded)
       if (app.users.hasOwnProperty(message.username)) {
-        $("." + message.username).addClass('bold');
+        $('.' + message.username).addClass('bold');
       }
     },
 
@@ -119,23 +119,23 @@ $(document).ready(function () {
 
     handleUsernameClick: function() {
       var name = this.textContent;
-      $("." + name).addClass('bold');
+      $('.' + name).addClass('bold');
       if (!app.users.hasOwnProperty(name)) {
         app.users[name] = name;
       } 
     }
-
   };
 
   $('#submit-text').on('click', function (event) {
     var text = $('#text-box').val();
-    var username = window.location.search.slice(window.location.search.indexOf("=") + 1);
+    var username = window.location.search.slice(window.location.search.indexOf('=') + 1);
     app.send({
       'text': text,
-      'username': username
+      'username': username,
+      'roomname': app.selectedRoom
     });
+    $('#text-box').val('');
   });
-
 
   $('#roomButton').on('click', function (event) {
     app.clearMessages();
@@ -143,6 +143,16 @@ $(document).ready(function () {
     app.firstFetch = true;
     app.allMsgs = {};
     app.fetch();
+  });
+
+  $('#add-room').on('click', function (event) {
+    var newRoom = $('#room-input').val();
+    if (!app.rooms.hasOwnProperty(newRoom)) {
+      var option = $('<option value=' + newRoom + '>' + newRoom + '</option>');
+      $('#room-selector').append(option);
+      app.rooms[newRoom] = newRoom;
+      $('#room-input').val('');
+    }
   });
 
   app.init();
