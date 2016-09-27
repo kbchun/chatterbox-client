@@ -7,6 +7,7 @@ $(document).ready(function () {
     allMsgs: {},
     rooms: {},
     selectedRoom: 'lobby',
+    users: {},
 
     init: function () {
       app.fetch();
@@ -59,7 +60,6 @@ $(document).ready(function () {
         if (!app.allMsgs.hasOwnProperty(msg.createdAt)) {
           app.allMsgs[msg.createdAt] = msg;
           app.renderMessage(msg);
-          // console.log(msg.text);
         }
       });
       app.firstFetch = false;
@@ -72,7 +72,7 @@ $(document).ready(function () {
 
     renderMessage: function (message) {
       var $messageBox = $('<div class="messageBox"></div>');
-      var $username = '<div class="username">' + filterXSS(message.username) + '</div>';
+      var $username = '<div class="username ' + filterXSS(message.username) + '"onClick=app.handleUsernameClick.call(this)>' + filterXSS(message.username) + '</div>';
       var $message = '<div class="message">' + filterXSS(message.text) + '</div>';
       var $timeStamp = '<div class="timeStamp">' + message.createdAt + '</div>';
       
@@ -81,7 +81,7 @@ $(document).ready(function () {
         var $room = '<div class="chatRoom">' + 'lobby' + '</div><br>';
         var roomname = 'lobby';
       } else {
-        var roomname = message.roomname;
+        var roomname = filterXSS(message.roomname);
         var $room = '<div class="chatRoom">' + filterXSS(roomname) + '</div><br>';
       }
 
@@ -93,7 +93,6 @@ $(document).ready(function () {
 
       // creating list of unique rooms
       if (!app.rooms.hasOwnProperty(roomname)) {
-        // var value = roomname.slice(0, roomname.indexOf(" "));
         var option = $('<option value=' + roomname + '>' + roomname + '</option>');
         $('#room-selector').append(option);
         app.rooms[roomname] = roomname;
@@ -103,23 +102,37 @@ $(document).ready(function () {
       if (app.firstFetch && app.selectedRoom === roomname) {
         $('#chats').append($messageBox);
 
+      // get new messages live
       } else if (app.selectedRoom === roomname) {
         $('#chats').prepend($messageBox);      
+      }
+
+      // checks if user is a friend; if so, bold their messages (!!!! currently just name is bolded)
+      if (app.users.hasOwnProperty(message.username)) {
+        $("." + message.username).addClass('bold');
       }
     },
 
     renderRoom: function () {
 
+    },
+
+    handleUsernameClick: function() {
+      var name = this.textContent;
+      $("." + name).addClass('bold');
+      if (!app.users.hasOwnProperty(name)) {
+        app.users[name] = name;
+      } 
     }
 
   };
 
   $('#submit-text').on('click', function (event) {
     var text = $('#text-box').val();
-    var userName = window.location.search.slice(window.location.search.indexOf("=") + 1);
+    var username = window.location.search.slice(window.location.search.indexOf("=") + 1);
     app.send({
       'text': text,
-      'username': userName
+      'username': username
     });
   });
 
@@ -133,7 +146,6 @@ $(document).ready(function () {
   });
 
   app.init();
-
 });
 
 
