@@ -9,6 +9,8 @@
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/xss/dist/xss.js"></script>
     <script src="bower_components/underscore/underscore.js"></script>
+    <script src="bower_components/jquery-timeago/jquery.timeago.js"></script>
+
     <script>
       // YOU DO NOT NEED TO EDIT THIS CODE
       if (!/(&|\?)username=/.test(window.location.search)) {
@@ -26,19 +28,25 @@
   </head>
   <body>
     <div id="main">
-      <h1>chatterbox</h1>
-      <!-- Your HTML goes here! -->
-      <div>
-        <textarea id="text-box" name="text-box" cols="40" rows="5" placeholder="text"></textarea>
-        <button id="submit-text">Submit</button>
-      </div>
+      <div class="header">
+        <h1>chatterbox</h1>
+        <!-- Your HTML goes here! -->
+        <div id="message">
+          <textarea id="text-box" name="text-box" cols="40" rows="5" placeholder="write your message here"></textarea>
+          <br>
+          <button id="submit-text">Submit</button>
+        </div>
 
-      <div id="rooms">
-        <select id="room-selector"></select>
-        <input type="button" id="roomButton" value="Select Room"/>
-        <br>
-        <input type="text" id="room-input"></input>
-        <button id="add-room">Add A Room</button>
+        <div id="rooms">
+          <div id="room-wrapper">
+            <select id="room-selector"></select>
+            <input type="button" id="roomButton" value="Select Room"/>
+          </div>
+          <div id="new-room-wrapper">
+            <input type="text" id="room-input" placeholder="enter room name"></input>
+            <button id="add-room">Submit</button>
+          </div>
+        </div>
       </div>
     </div>
     <div id="chats"></div>

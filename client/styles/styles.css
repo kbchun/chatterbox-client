@@ -1,18 +1,31 @@
+@import url(https://fonts.googleapis.com/css?family=Quicksand:300,400,700);
+
 body {
-    background: #eee;
+    font-family: 'quicksand';
+    background: rgba(92,129,202,1);
+      background: 
+        -moz-linear-gradient(
+          left, 
+          rgba(92,129,202,1) 0%, 
+          rgba(249,140,112,1) 100%
+      );
+      background:
+        -webkit-linear-gradient(
+            left, 
+            rgba(92,129,202,1) 0%, 
+            rgba(249,140,112,1) 100%
+      );
     text-align: center;
-    padding: 0 25px;
-    font-family: arial, sans-serif;
+    /*padding: 0 25px;*/
 }
 
 #main, #chats {
-    width: 500px;
+/*    width: 500px;*/
     margin: auto;
     text-align: left;
-    background: white;
-    padding: 50px 60px;
-    border: solid #ddd;
-    border-width: 0 1px 1px 1px;
+    padding-bottom: 20px;
+    color: white;
+    text-align: center;
 }
 
 #main h1 {
@@ -88,6 +101,156 @@ form input[type=text] {
     background-color: #0090da;
 }
 
-.bold {
-    font-weight: bold;
+
+.messageBox {
+    background: rgba(0,0,0,.4);
+    margin: auto;
+    margin-top: 20px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 2px;
+    -webkit-box-shadow: 10px 10px 29px -8px rgba(0,0,0,0.53);
+    -moz-box-shadow: 10px 10px 29px -8px rgba(0,0,0,0.53);
+    box-shadow: 10px 10px 29px -8px rgba(0,0,0,0.53);
+    border: 1px solid rgba(0,0,0,.1);
+    max-width: 500px;
+    word-wrap: break-word;
+    font-weight: lighter;
+    transition: all .3s;
+}
+
+.username {
+    font-size: 30px;
+    padding: 10px;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+    font-weight: 400;
+}
+
+.message {
+    padding: 10px;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+    word-wrap: break-word;
+    font-weight: 400;
+}
+
+#message {
+    margin-bottom: 40px;
+}
+
+.timeStamp {
+    font-weight: 700;
+    margin: 10px;
+    font-size: 12px;
+}
+
+#text-box {
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+    width: 100%;
+    border-radius: 2px;
+    transition: all .2s;
+    font-size: 20px;
+    font-weight: lighter;
+}
+
+#room-input {
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+    border-radius: 2px;
+    height: 30px;
+}
+
+button, input {
+    font-size: 20px;
+    height: 30px;
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255, .5);
+    color: white;
+    margin-top: 10px;
+    transition: all .3s;
+    border-radius: 2px;
+    font-weight: lighter;
+    letter-spacing: 1px;
+}
+
+button:hover {
+    background: rgba(255,255,255,.3);
+}
+
+input:hover {
+    background: rgba(255,255,255,.3);
+}
+
+#submit-text {
+    width: 508px;
+}
+
+.header {
+    max-width: 500px;
+    margin: auto; 
+}
+
+#rooms {
+    display: flex;
+    justify-content: space-between;
+    width: 508px;
+}
+
+#room-wrapper {
+    width: 100%;
+    display: inline;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    max-width: 40%;
+}
+
+#new-room-wrapper {
+    width: 100%;
+    display: inline;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    max-width: 40%;
+}
+
+#room-selector {
+    flex: 1;
+    max-width: 200px;
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    font-size: 20px;
+    height: 30px;
+    margin-top: 10px;
+    width: 100%;
+    border-radius: 2px;
+}
+
+#roomButton {
+    width: 200px;
+}
+
+#room-input {
+    text-align: center;
+}
+
+.befriended {
+    background: rgba(255,255,255, .5);
+    color: rgba(0,0,0,.9);
+    border: 1px solid rgba(255,255,255,.1);
+}
+
+.befriended > .username {
+    border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+.befriended > .message {
+    border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+::-webkit-input-placeholder {
+    color: rgba(255,255,255, .5);
 }
